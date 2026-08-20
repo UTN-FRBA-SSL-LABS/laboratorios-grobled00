@@ -1,6 +1,2 @@
-identificador: abc
-identificador: xyz
-identificador: hola
-identificador: mundo
-Tokens totales: 4
-El doble es: 8
+abc xyz
+hola mundo
