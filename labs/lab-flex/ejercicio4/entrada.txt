@@ -1,1 +1,7 @@
-42 + miVar - 10 * resultado
+TOKEN NUMBER (258) valor=42
+TOKEN '+'
+TOKEN IDENT (259) lexema=miVar
+TOKEN '-'
+TOKEN NUMBER (258) valor=10
+TOKEN '*'
+TOKEN IDENT (259) lexema=resultado

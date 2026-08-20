@@ -1,1 +1,5 @@
-abc miVariable 12345 0xFF xyz
+dentificador de longitud 3: abc
+identificador de longitud 10: miVariable
+constante decimal de longitud 5: 12345
+constante hexadecimal de longitud 4: 0xFF
+identificador de longitud 3: xyz
