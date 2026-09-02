@@ -21,7 +21,7 @@ int multiplicar(int a, int b) {
 /* ── esPar ────────────────────────────────────────────────────────────────── */
 
 int esPar(int n) {
-    return (n % 2) == 0;
+    return (n & 1) == 0;
 }
 
 int dividir(int a, int b) {
