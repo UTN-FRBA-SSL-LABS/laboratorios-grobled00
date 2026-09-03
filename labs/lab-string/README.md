@@ -277,7 +277,7 @@ Los tests de `IsEmpty` ya están activos en `StringTest.c`. Corré `make test` y
 
 **P1** — `IsEmpty` podría haberse escrito también como `return s[0] == '\0'`. ¿Son equivalentes? ¿Por qué?
 
-> R:
+> R: Si son lo mismo porque el *s accede a la primer caracter, al igual que s[0], ambos retornan si ese caracter es el nulo \0
 
 ---
 
@@ -328,14 +328,14 @@ make test
 
 **P2** — ¿Qué hace `s + 1`? ¿Por qué avanza al siguiente carácter y no al siguiente byte?
 
-> R:
+> R: s + 1 calcula la dirección de memoria del siguiente elemento en la cadena. Avanza al siguiente carácter por la aritmética de punteros en C: cuando le sumas 1 a un puntero, no avanza 1 byte ciegamente, sino que avanza el tamaño del tipo de dato al que apunta. Como s es un puntero a char, salta exactamente el tamaño de un char. (Nota: en C un char equivale a 1 byte, así que técnicamente es lo mismo, pero la razón teórica es el tipo de dato).
 
 **P3** — Si llamaras a `GetLength(NULL)`, ¿qué pasaría? ¿Por qué las precondiciones del contrato dicen `s != NULL`?
 
-> R:
+> R:Si llamara a GetLength(NULL), el programa se detendría abruptamente con un error de memoria (Segmentation Fault o core dumped). Esto ocurre porque la función intentaría leer el valor dentro de NULL (al llamar a IsEmpty y hacer *s), lo cual es una dirección de memoria inválida. Las precondiciones dicen s != NULL para establecer un "contrato": es responsabilidad del programador que llama a la función asegurarse de no enviarle un NULL, liberando a GetLength de tener que hacer esa validación.
 
 ```
-GETLENGTH_PASA=
+GETLENGTH_PASA=SI
 ```
 _(escribí SI cuando todos los tests de GetLength pasen)_
 
@@ -367,7 +367,11 @@ El `while` termina cuando alguna de las dos cadenas llega a `'\0'`. Después dev
 
 **P4** — ¿Qué dos casos están mal cubiertos por `return 1`? Describí un ejemplo para cada uno.
 
-> R:
+> R:Los dos casos que fallan ocurren cuando las cadenas tienen distinta longitud, pero la más corta es idéntica al inicio de la más larga. El bucle se detiene prematuramente y devuelve 1 en estos escenarios:
+
+>Cuando la primera cadena es más larga: Por ejemplo, s1 = "abc" y s2 = "ab".
+
+>Cuando la segunda cadena es más larga: Por ejemplo, s1 = "ab" y s2 = "abc".
 
 #### Corrección
 
@@ -384,7 +388,7 @@ make test
 ```
 
 ```
-AREEQUAL_PASA=
+AREEQUAL_PASA=SI
 ```
 _(escribí SI cuando todos los tests de AreEqual pasen)_
 
@@ -414,7 +418,7 @@ int AreDecimalDigits(const char *s) {
 
 **P5** — ¿Por qué la cadena vacía no debería considerarse un conjunto de dígitos decimales? Pensalo desde la especificación matemática.
 
-> R:
+> R:Desde una especificación matemática, para que una secuencia sea considerada un número o un "conjunto de dígitos", debe tener al menos un elemento (cardinalidad mayor a cero). Una cadena vacía no contiene ningún carácter (es un conjunto vacío), por lo tanto, al carecer de dígitos, no representa ningún valor numérico válido. Por ende, es incorrecto afirmar que "está compuesta por dígitos decimales", y la función debe devolver 0 (Falso).
 
 #### Corrección
 
@@ -425,7 +429,7 @@ make test
 ```
 
 ```
-AREDECIMALDIGITS_PASA=
+AREDECIMALDIGITS_PASA=SI
 ```
 _(escribí SI cuando todos los tests de AreDecimalDigits pasen)_
 
@@ -452,7 +456,7 @@ make test
 ```
 
 ```
-CONTAINS_PASA=
+CONTAINS_PASA=SI
 ```
 _(escribí SI cuando todos los tests de Contains pasen)_
 
@@ -509,7 +513,7 @@ make test
 > R:
 
 ```
-TOINTEGER_PASA=
+TOINTEGER_PASA=SI
 ```
 _(escribí SI cuando todos los tests de ToInteger pasen)_
 
@@ -589,7 +593,7 @@ Salida esperada:
 ```
 
 ```
-LONGITUDES_PASA=
+LONGITUDES_PASA=SI
 ```
 _(SI o NO)_
 
@@ -616,7 +620,7 @@ make mayorlongitud
 ```
 
 ```
-MAYORLONGITUD_PASA=
+MAYORLONGITUD_PASA=SI
 ```
 _(SI o NO)_
 
@@ -635,7 +639,7 @@ make todosiguales
 ```
 
 ```
-TODOSIGUALES_PASA=
+TODOSIGUALES_PASA=SI
 ```
 _(SI o NO)_
 
